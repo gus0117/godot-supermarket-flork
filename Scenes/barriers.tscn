@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv7qxc43erbiv"]
+
+[ext_resource type="Texture2D" uid="uid://dge7533ieef3w" path="res://Assets/barrier.png" id="1_6ok5t"]
+
+[node name="Barriers" type="Node2D"]
+
+[node name="Barrier_1" type="Sprite2D" parent="."]
+position = Vector2(831.058, 128)
+rotation = -1.5708
+scale = Vector2(0.40603, 1.4595)
+texture = ExtResource("1_6ok5t")
+
+[node name="Barrier_2" type="Sprite2D" parent="."]
+position = Vector2(831.058, 256)
+rotation = -1.5708
+scale = Vector2(0.40603, 1.4595)
+texture = ExtResource("1_6ok5t")
+
+[node name="Barrier_3" type="Sprite2D" parent="."]
+position = Vector2(829.168, 384)
+rotation = -1.5708
+scale = Vector2(0.40603, 1.43727)
+texture = ExtResource("1_6ok5t")
+
+[node name="Barrier_4" type="Sprite2D" parent="."]
+position = Vector2(829.168, 512)
+rotation = -1.5708
+scale = Vector2(0.40603, 1.43727)
+texture = ExtResource("1_6ok5t")
+
+[node name="Barrier_5" type="Sprite2D" parent="."]
+position = Vector2(543.563, 452.75)
+scale = Vector2(0.605, 2.29706)
+texture = ExtResource("1_6ok5t")
+
+[node name="Barrier_6" type="Sprite2D" parent="."]
+position = Vector2(432.824, 129.26)
+rotation = 1.5708
+scale = Vector2(0.504206, 1.25207)
+texture = ExtResource("1_6ok5t")

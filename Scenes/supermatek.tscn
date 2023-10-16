@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://crji2hqli2hwq"]
+
+[ext_resource type="Script" path="res://Scripts/supermatek.gd" id="1_fhffr"]
+[ext_resource type="PackedScene" uid="uid://c5tekql1ron3e" path="res://Scenes/flork_box.tscn" id="2_2m62f"]
+[ext_resource type="PackedScene" uid="uid://df1nt4accebjg" path="res://Scenes/flork_cart.tscn" id="2_sq7f7"]
+[ext_resource type="PackedScene" uid="uid://cv7qxc43erbiv" path="res://Scenes/barriers.tscn" id="3_1ridv"]
+
+[sub_resource type="Curve2D" id="Curve2D_chw74"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -104, 56, 0, 0, 0, 0, 88, 56, 0, 0, 0, 0, 240, 56, 0, 0, 0, 0, 424, 56, 0, 0, 0, 0, 808, 56, 0, 0, 0, 0, 1296, 56)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_ermlf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -104, 528, 0, 0, 0, 0, 456, 528, 0, 0, 0, 0, 456, 424, 0, 0, 0, 0, 456, 304, 0, 0, 0, 0, 456, 176)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_f4i8x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 456, 176, 0, 0, 0, 0, 640, 176, 0, 0, 0, 0, 640, 320, 0, 0, 0, 0, 792, 320, 0, 0, 0, 0, 1280, 320)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_d61cx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 456, 176, 0, 0, 0, 0, 640, 176, 0, 0, 0, 0, 640, 448, 0, 0, 0, 0, 800, 448, 0, 0, 0, 0, 1280, 448)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_rub1n"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 456, 176, 0, 0, 0, 0, 640, 176, 0, 0, 0, 0, 640, 576, 0, 0, 0, 0, 800, 576, 0, 0, 0, 0, 1280, 576)
+}
+point_count = 5
+
+[node name="Supermatek" type="Node"]
+script = ExtResource("1_fhffr")
+florkCart = ExtResource("2_sq7f7")
+
+[node name="FlorkBox" parent="." instance=ExtResource("2_2m62f")]
+position = Vector2(816, 63)
+scale = Vector2(0.6, 0.6)
+
+[node name="FlorkBox2" parent="." instance=ExtResource("2_2m62f")]
+position = Vector2(819, 312)
+scale = Vector2(0.6, 0.6)
+
+[node name="FlorkBox3" parent="." instance=ExtResource("2_2m62f")]
+position = Vector2(818, 440)
+scale = Vector2(0.6, 0.6)
+
+[node name="FlorkBox4" parent="." instance=ExtResource("2_2m62f")]
+position = Vector2(819, 576)
+scale = Vector2(0.6, 0.6)
+
+[node name="Barriers" parent="." instance=ExtResource("3_1ridv")]
+
+[node name="Box1" type="Path2D" parent="."]
+curve = SubResource("Curve2D_chw74")
+
+[node name="Line" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ermlf")
+
+[node name="Box2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_f4i8x")
+
+[node name="Box3" type="Path2D" parent="."]
+curve = SubResource("Curve2D_d61cx")
+
+[node name="Box4" type="Path2D" parent="."]
+curve = SubResource("Curve2D_rub1n")
+
+[node name="Settings" type="Node" parent="."]
+
+[node name="SpawnTimer" type="Timer" parent="Settings"]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Settings/SpawnTimer" to="." method="_on_timer_timeout"]
