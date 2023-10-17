@@ -7,11 +7,20 @@ const SPEED : float = 350
 var next_pos: float = 0
 var move_next: bool = false
 
+var amount_products: int
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	move_path_follow(delta)
 
+
+func check_line() -> void:
+	if get_parent().name == "Box1":
+		set_next_pos(GLOBAL.get_pos_fast_line())
+	elif get_parent().name == "Line":
+		print("Give me a box")
+		print("And give me a position")
 
 func move_path_follow(delta) -> void:
 		if move_next:

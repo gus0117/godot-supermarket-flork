@@ -14,28 +14,36 @@ extends Node
 @onready var box_3: Path2D = $Box3
 @onready var box_4: Path2D = $Box4
 
-#Lines positions, where the first position is the box position
-var box_1_positions : Array[float] = [0.65, 0.52, 0.42, 0.32, 0.22]
-var line_positions: Array[float] = [1.00, 0.86, 0.62, 0.43, 0.22]
+#Random Generator
+var rng = RandomNumberGenerator.new() 
+var amount_clients : int = 0
 
-#Positions to enter in the box
-var box_2_position : float = 0.52
-var box_3_position : float = 0.55
-var box_4_position : float = 0.61
-
-func _ready():
-	pass
+#Probability to generate a client
+const PRO : float = 0.7
+const MAX_AMOUN_CLIENTS : int = 5
 
 
 func spawnFlorkCart() -> void:
 	var flork_instance = florkCart.instantiate()
-	#For now, I instantiate a flork on box 1 to test de funtion
-	flork_instance.global_position = box_1.global_position
-	box_1.add_child(flork_instance)
-	
-	#This make than the flork walk througth the path
-	flork_instance.set_next_pos(0.8)
+	flork_instance.amount_products = rng.randi_range(1, 15)
+	#The client go to rapid box
+	if flork_instance.amount_products <= 15:
+		#Chance of the buyer to go to rapid line
+		if rng.randf() < 0.8:
+			flork_instance.global_position = box_1.global_position
+			box_1.add_child(flork_instance)
+	else:
+		flork_instance.global_position = line.global_position
+		line.add_child(flork_instance)
+	#Make the flork start to move in the line
+	flork_instance.check_line()
 
 
 func _on_timer_timeout():
-	spawnFlorkCart()
+	if amount_clients > MAX_AMOUN_CLIENTS:
+		return
+	
+	# probability to generate a client
+	if rng.randf() > PRO:
+		amount_clients += 1
+		spawnFlorkCart()
