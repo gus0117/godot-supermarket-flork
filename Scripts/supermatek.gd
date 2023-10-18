@@ -25,13 +25,14 @@ const MAX_AMOUN_CLIENTS : int = 5
 
 func spawnFlorkCart() -> void:
 	var flork_instance = florkCart.instantiate()
-	flork_instance.amount_products = rng.randi_range(1, 15)
+	flork_instance.set_amount_products(rng.randi_range(16, 30))
 	#The client go to rapid box
 	if flork_instance.amount_products <= 15:
 		#Chance of the buyer to go to rapid line
 		if rng.randf() < 0.8:
 			flork_instance.global_position = box_1.global_position
 			box_1.add_child(flork_instance)
+			GLOBAL.array_boxes["box1"] += 1
 	else:
 		flork_instance.global_position = line.global_position
 		line.add_child(flork_instance)
